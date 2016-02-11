@@ -1,13 +1,15 @@
 var xmlrpc = require('xmlrpc');
 var types = require('./lib/types');
 
-var iSDK = module.exports = function (appname, apikey, handler) {
-
-	this.appName = appname;
-	this.apiKey = apikey;
+var iSDK = module.exports = function (access_token, handler) {
+	this.accessToken = access_token;
 	this.responseHandler = handler || function () {};
-	this.client = xmlrpc.createSecureClient('https://' + this.appName + '.infusionsoft.com/api/xmlrpc');
-
+	this.client = xmlrpc.createSecureClient({
+		'host': 'api.infusionsoft.com',
+		'path': '/crm/xmlrpc/v1?access_token=' + access_token,
+		'port': null
+	});
+	this.apiKey = 'privateKey';
 };
 
 iSDK.prototype.methodCaller = function (service, data, callback) {

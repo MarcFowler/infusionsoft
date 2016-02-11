@@ -9,13 +9,16 @@ InfusionSoft node.js SDK.
 
 ### Installation ###
 ```bash
-npm install infusionsoft 
+npm install infusionsoft
 ```
+
+### Usage ###
+Note that this now uses the newer XML-RPC location, but I have not added in support for refreshing OAuth tokens yet. Right now, you need to provide a valid access token to the methods for them to work and if the token has expired, you'll get an error.
 
 ### Usage ###
 ```javascript
 var iSDK = require('infusionsoft');
-var client = new iSDK('app_name', 'api_key');
+var client = new iSDK('access_token');
 ```
 
 ### Implemented methods ###
